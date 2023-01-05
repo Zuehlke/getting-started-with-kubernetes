@@ -1,0 +1,20 @@
+#try to avoid latest tag
+FROM python:latest
+
+ #if the final user directiv is set to root, the cointainer runs as root
+USER root  
+
+# do not install unnecessary software
+RUN apt-get update && apt-get install python3 
+
+#do not use sensetive data
+ENV APP_PASWORD=top_secret 
+
+
+WORKDIR /usr/src/app
+EXPOSE 8888
+COPY requirements.txt ./
+RUN pip3 install -r requirements.txt
+COPY app.py ./
+CMD python3 app.py
+

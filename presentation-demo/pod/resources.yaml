@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webserver-resources
+  labels:
+    name: webserver
+spec:
+  containers:
+    - name: webserver
+      image: httpd:2.4.54-alpine3.17
+      resources:
+        requests:
+          cpu: "100m"
+          memory: "128Mi"
+        limits:
+          cpu: "500m"
+          memory: "256Mi"
+      ports:
+        - containerPort: 80

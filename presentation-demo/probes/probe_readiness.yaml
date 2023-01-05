@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webserver-rp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webserver-rp
+  template:
+    metadata:
+      labels:
+        app: webserver-rp
+    spec:
+      containers:
+        - name: webserver-rp
+          image: httpd:2.4.54-alpine3.17
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /not-existing

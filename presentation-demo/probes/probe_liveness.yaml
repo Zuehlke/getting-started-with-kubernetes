@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webserver-lp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webserver-lp
+  template:
+    metadata:
+      labels:
+        app: webserver-lp
+    spec:
+      containers:
+        - name: webserver-lp
+          image: httpd:2.4.54-alpine3.17
+          ports:
+            - containerPort: 80
+          livenessProbe:
+            httpGet:
+              port: 8080
+              path: /not-existing

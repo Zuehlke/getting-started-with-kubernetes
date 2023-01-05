@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webserver-sp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webserver-sp
+  template:
+    metadata:
+      labels:
+        app: webserver-sp
+    spec:
+      containers:
+        - name: webserver-sp
+          image: httpd:2.4.54-alpine3.17
+          ports:
+            - containerPort: 80
+          startupProbe:
+            httpGet:
+              port: 8080
+              path: /not-existing
