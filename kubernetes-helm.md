@@ -69,7 +69,6 @@ Foward port of the Grafana service to a local port
 ```shell
 kubectl port-forward service/hello-kubernetes-my-hello-kubernetes 8008:80
 ```
-📝 Optional: Can you create a `Service` of type `NodePort` for this deployment 
 
 Where does Helm store its data?
 ```shell
