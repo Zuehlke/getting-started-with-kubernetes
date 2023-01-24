@@ -28,6 +28,16 @@ See everything related to the just installed Helm chart based on your releae nam
 kubectl get all -l "app.kubernetes.io/instance=my-hello-kubernetes"
 ```
 
+## Alternative for MAC:
+Use Hello World instead of hello-kubernetes-my-hello-kubernetes
+https://artifacthub.io/packages/helm/sikalabs/hello-world?modal=install
+
+```
+echo "TEXT: New Text." > values-message.yaml
+helm upgrade my-hello-world sikalabs/hello-world --values values-message.yaml
+kubectl port-forward service/my-hello-world 8888:80
+```
+
 ## Explore installed Helm chart
 
 Foward port of the Grafana service to a local port
