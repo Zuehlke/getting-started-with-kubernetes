@@ -51,7 +51,7 @@ kubectl exec -it hello-kubernetes-59bb8ffc5f-gvlbq -- env
 kubectl exec -it hello-kubernetes-59bb8ffc5f-gvlbq -- env | grep MESSAGE
 ```
 
-💡 There is also a prepared version with a `ConfigMap` under `kubernetes/hello-kubernetes/resource-configmap.yaml`. It provides a service under http://localhost:31323
+💡 There is also a prepared version with a `ConfigMap` under `kubernetes/hello-kubernetes/resources-configmap.yaml`. It provides a service under http://localhost:31323
 
 📝 What can we do?
 
@@ -64,7 +64,7 @@ kubectl get secret secret-message -o yaml
 
 Looks safe, doesn't it?
 
-Let's use it instead of the `ConfigMap` in `kubernetes/hello-kubernetes/resource-configmap.yaml`.
+Let's use it instead of the `ConfigMap` in `kubernetes/hello-kubernetes/resources-configmap.yaml`.
 ```yaml
           - name: MESSAGE
             valueFrom:
@@ -74,7 +74,7 @@ Let's use it instead of the `ConfigMap` in `kubernetes/hello-kubernetes/resource
 ```
 Apply the resources again
 ```shell
-kubectl apply -f kubernetes/hello-kubernetes/resource-configmap.yaml
+kubectl apply -f kubernetes/hello-kubernetes/resources-configmap.yaml
 ```
 
 Let's check the result under http://localhost:31313
