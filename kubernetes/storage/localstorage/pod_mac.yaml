@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginxpod
+  name: nginxpod
+spec:
+  containers:
+    - image: nginx
+      volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: data-volume
+      name: timepod
+      resources: {}
+  volumes:
+    - name: data-volume
+      hostPath:
+        path: /Users/<UserId>/Documents/test
+        type: DirectoryOrCreate
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
