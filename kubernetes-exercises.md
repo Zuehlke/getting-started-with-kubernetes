@@ -48,7 +48,7 @@ Topics covered
 
 Goals
 * Running docker registry on the Kubernetes cluster
-* Push a localy build docker image to the custom registry
+* Push a locally built docker image to the custom registry
 
 Inputs 
 * Use the registry:2 image
