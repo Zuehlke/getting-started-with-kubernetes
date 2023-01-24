@@ -12,7 +12,20 @@ Search repositories for a keyword in charts. E.g. find `hello-kubernetes`.
 helm search repo hello-kubernetes
 ```
 
-## Install
+## Alternative for MAC:
+
+Add the sikalabs helm repository locally. Similar to a docker registry. 
+```shell
+helm repo add sikalabs https://helm.sikalabs.io
+```
+💡 Helm does support reading/writing Helm charts to an OCI registry. 
+
+Search repositories for a keyword in charts. E.g. find `hello-world`. 
+```shell
+helm search repo hello-world
+```
+
+## Install Windows
 
 Install a Helm chart with its latest version under the **release name** `my-hello-kubernetes`
 ```shell
@@ -28,17 +41,29 @@ See everything related to the just installed Helm chart based on your releae nam
 kubectl get all -l "app.kubernetes.io/instance=my-hello-kubernetes"
 ```
 
-## Alternative for MAC:
-Use Hello World instead of hello-kubernetes-my-hello-kubernetes
-https://artifacthub.io/packages/helm/sikalabs/hello-world?modal=install
+## Install Mac
 
+Install a Helm chart with its latest version under the **release name** `my-hello-world`
+```shell
+helm install my-hello-world sikalabs/hello-world --version 0.4.0
 ```
-echo "TEXT: New Text." > values-message.yaml
-helm upgrade my-hello-world sikalabs/hello-world --values values-message.yaml
+List your release with the following command.
+```shell
+helm ls
+```
+Watch the result in your Browser
+```
 kubectl port-forward service/my-hello-world 8888:80
 ```
 
-## Explore installed Helm chart
+Update a value file and make Helm aware of it. 
+```
+echo "TEXT: New Text." > values-message.yaml
+helm upgrade my-hello-world sikalabs/hello-world --values values-message.yaml
+```
+📝 Check the result again
+
+## Explore installed Helm chart Windows
 
 Foward port of the Grafana service to a local port
 ```shell
@@ -72,7 +97,7 @@ helm pull opsmx/hello-kubernetes --version 1.0.3 --untar
 ```
 The chart should be available in the file `hello-kubernetes-1.0.3.tgz` as well as unpacked in the directory `hello-kubernetes`
 
-## Helm charts structure
+## Helm charts structure Windows
 
 Explain anatomy of Helm CLI
 ```shell
