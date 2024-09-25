@@ -16,3 +16,4 @@
 * [Helm Basics](kubernetes-helm.md)
 * [Helm Prometheus](kubernetes-helm-prometheus.md)
 * [Daily Goal](kubernetes-daily-goal.md)
+* [Ingress](kubernetes-ingress.md)
