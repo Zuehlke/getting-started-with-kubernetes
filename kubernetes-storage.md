@@ -1,5 +1,5 @@
 # Storage
-[⬅️ Back to Kubernetes overview](kubernetes.md)
+[⬅️ Back to Kubernetes overview](README.md)
 
 The goal of this exercise is to create a persistent volume (PV) & persistent volume claim (PVC) and use it in a nginx pod. 
 
