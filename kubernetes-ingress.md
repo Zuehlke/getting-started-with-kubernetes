@@ -4,8 +4,12 @@
 
 ## Setup ingress controller
 ![Ingress Controller](./kubernetes/ingress.png)
+_This overview shows a nginx ingress controller, containing a self-managed nginx deployment. The controller manages ingress resources from e.g. your service._
 
-### When using kind:
+
+### Configure Cluster when using kind:
+_Unfortunately, the only point in time during which we can set static port mappings to a kind cluster is during its creation. Because of that, we need to recreate the cluster here, and add the required attributes._
+
 From Kind [Documentation](https://kind.sigs.k8s.io/docs/user/ingress/)
 1. Setup Cluster
 
@@ -34,17 +38,13 @@ EOF
 > [!WARNING]
 > you may need to change the hostport when some other service is already using it
 
-2. Create Namespace
 
-```sh
-kubectl create namespace ingress-nginx
-```
-3. Deploy Ingress Controller. [Github link](https://github.com/kubernetes/ingress-nginx)
+2. Deploy Ingress Controller. [Github link](https://github.com/kubernetes/ingress-nginx)
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
 ```
 
-4. Run this command to wait for ingress to finish setting up
+3. Run this command to wait for ingress to finish setting up
 ```sh
 kubectl wait --namespace ingress-nginx \
   --for=condition=ready pod \
@@ -65,7 +65,7 @@ minikube service -n ingress-nginx ingress-nginx-controller
 1. Deploy a hello world app:
 ```sh
 kubectl create deployment web --image=gcr.io/google-samples/hello-app:1.0
-kubectl expose deployment web --type=NodePort --port=8080
+kubectl expose deployment web --type=NodePort --port=8080 # the expose command creates a service of type node port for the web deployment
 ```
 
 ## Create an Ingress 
@@ -107,7 +107,7 @@ kubectl create deployment web2 --image=gcr.io/google-samples/hello-app:2.0
 kubectl expose deployment web2 --port=8080 --type=NodePort
 ```
 
-create route for second service:
+Now we extend the ingress we created before by creating a route for our second service:
 
 ```yaml
 - path: /v2
