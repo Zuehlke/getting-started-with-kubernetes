@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: color-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: color-app
+  template:
+    metadata:
+      labels:
+        app: color-app
+    spec:
+      volumes:
+      - name: config-volume
+        configMap:
+          name: color-config
+          items:
+          - key: color
+            path: color.txt
+  
+      containers:
+      - name: color-env
+        # kubectl logs -f deployments/color-app -c color-env
+        image: busybox
+        command:
+        - "sh"
+        args:
+        - "-c" 
+        - "echo \"this is a shell variable pulled from the environment: ${COLOR}\""
+        env:
+        - name: COLOR
+          valueFrom:
+            configMapKeyRef:
+              name: color-config
+              key: color
+        # if there are many more entries in a config map, pull them all:
+        envFrom:
+        - configMapRef:
+            name: color-config
+
+      - name: color-file
+        # kubectl logs -f deployments/color-app -c color-file
+        image: busybox
+        command:
+        - "sh"
+        - "-c"
+        args:
+        - "cat /etc/config/color.txt"
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
+      
