@@ -1,4 +1,4 @@
-FROM python:3.6
+FROM python:3.10
 RUN pip install flask
 COPY . /opt/
 EXPOSE 8080
