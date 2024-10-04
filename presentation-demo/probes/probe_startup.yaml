@@ -20,4 +20,10 @@ spec:
           startupProbe:
             httpGet:
               port: 8080
-              path: /not-existing
+              path: /started-already-?
+            failureThreshold: 2
+            successThreshold: 1
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            timeoutSeconds: 1
+

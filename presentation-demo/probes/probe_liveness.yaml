@@ -20,4 +20,9 @@ spec:
           livenessProbe:
             httpGet:
               port: 8080
-              path: /not-existing
+              path: "/💀"
+            failureThreshold: 10
+            successThreshold: 1
+            initialDelaySeconds: 2
+            periodSeconds: 1
+            timeoutSeconds: 1

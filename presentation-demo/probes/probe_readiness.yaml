@@ -20,4 +20,9 @@ spec:
           readinessProbe:
             httpGet:
               port: 8080
-              path: /not-existing
+              path: /no-coffee
+            failureThreshold: 2
+            successThreshold: 1
+            initialDelaySeconds: 1
+            periodSeconds: 5
+            timeoutSeconds: 1
