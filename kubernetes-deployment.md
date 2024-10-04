@@ -9,44 +9,26 @@ kubectl create deployment --image=nginx --port 80 nginx
 So what is the difference? There is still a pod, but with a weird name
 ```shell
 kubectl get pod
-kubectl describe pod -l "app=nginx"
+kubectl describe pod nginx-7769f8f85b-5wcxt # replace the pod name with yours!
 ```
 
 Pod is "Controlled By" a ReplicaSet
 ```shell
 kubectl get replicaset
-kubectl describe replicaset -l "app=nginx"
+kubectl describe replicaset nginx-7769f8f85b # replace the replicaset name with yours!
 ```
 
 ReplicaSet is "Controlled By" the Deployment we've just created
 ```shell
 kubectl get deployment
-kubectl describe deployment nginx
+kubectl describe deployment nginx # this is the name we explicitly supplied during creation of the deployment
 ```
 
-Labels are properties attached to each object. Selectors filter these items.
+Labels are properties attached to each object. Selectors filter these items and can help you typing or even remembering the automatically generated resource names.
 ```shell
 kubectl get pods --selector app=nginx
-```
-
-Expose the deployment using a `Service` of type `NodePort`
-```shell
-kubectl create service nodeport nginx --tcp 80:80
-```
-
-Try to find the `NodePort` for your service.
-```shell
-kubectl describe service nginx
-```
-
-Visit `http://localhost:<nodeport>/` to view your deployment.
-
-💡 `NodePort`s can only be in the range of 30000-32767
-
-How does this even know to what pod to route the traffic to? Let's inspect the created service
-```shell
-kubectl get service
-kubectl get service nginx  -o yaml
+# the short version:
+kubectl get pods -l app=nginx
 ```
 
 Let's scale the deployment to more instances and watch what happens
@@ -72,10 +54,10 @@ kubectl get pods
 
 Delete the created resources
 ```shell
-kubectl delete service nginx
 kubectl delete deployment nginx
 ```
 
 ## Exercise
 * Create a new deployment with the Apache Webserver (httpd) and two replicas.
-* Expose a node port service with port 30081
+* Change the version and apply the new deployment, monitor the pod, resource & deployment resources.
+* Restore the previous version of the deployment
