@@ -92,13 +92,14 @@ Run `kubectl apply -f ingress.yaml` to create it.
 To test
 on kind:
 ```sh
-curl localhost:80
+curl localhost:8080
 ```
 
 on minikube:
 
 ```sh
-curl --resolve "hello-world.example:80:$( minikube ip )" -i http://hello-world.example
+minikube ip #gets the node ip
+curl 192.168.103.2:80 #<--replace with oupute from previous command
 ```
 ## Create another deployment
 
@@ -124,7 +125,8 @@ Run `kubectl apply -f ingress.yaml` to update it.
 ```sh
 curl localhost:80
 #or with minikube
-curl --resolve "hello-world.example:80:$( minikube ip )" -i http://hello-world.example
+minikube ip #gets the node ip
+curl 192.168.103.2:80 #<--replace with oupute from previous command
 
 ## Output should be similar to:
 # Hello, world!
