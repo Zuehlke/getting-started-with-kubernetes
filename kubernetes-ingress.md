@@ -4,6 +4,7 @@
 
 ## Setup ingress controller
 ![Ingress Controller](./kubernetes/ingress.png)
+
 _This overview shows a nginx ingress controller, containing a self-managed nginx deployment. The controller manages ingress resources from e.g. your service._
 
 
