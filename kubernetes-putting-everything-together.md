@@ -1,4 +1,4 @@
-# Daily goal
+# Putting everything together 
 ![daily goal](kubernetes/daily-goal.png)
 
 ### Tasks
