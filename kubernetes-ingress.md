@@ -135,7 +135,8 @@ curl 192.168.103.2:80 #<--replace with oupute from previous command
 
 curl localhost:80/v2
 #or with minikube
-curl --resolve "hello-world.example:80:$( minikube ip )" -i http://hello-world.example/v2
+minikube ip #gets the node ip
+curl 192.168.103.2:80/v2 #<--replace with oupute from previous command
 
 ## Output should be similar to:
 # Hello, world!
