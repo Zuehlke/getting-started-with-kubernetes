@@ -5,5 +5,7 @@ namePrefix: production-
 commonAnnotations:
   note: Hello, I am prod!
 
+namespace: production
+
 resources:
 - ../../base

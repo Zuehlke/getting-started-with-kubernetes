@@ -5,3 +5,4 @@ metadata:
 
 resources:
 - deployment.yaml
+- namespace.yaml

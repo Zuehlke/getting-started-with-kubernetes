@@ -5,6 +5,8 @@ images:
 - name: gcr.io/google-samples/hello-app
   newTag: '2.0'
 
+namespace: development
+
 
 namePrefix: development-
 commonAnnotations:
