@@ -7,6 +7,7 @@
 
 _This overview shows a nginx ingress controller, containing a self-managed nginx deployment. The controller manages ingress resources from e.g. your service._
 
+> Official installation guide for help: https://kubernetes.github.io/ingress-nginx/deploy/#docker-desktop
 
 ### Configure Cluster when using kind:
 _Unfortunately, the only point in time during which we can set static port mappings to a kind cluster is during its creation. Because of that, we need to recreate the cluster here, and add the required attributes._
@@ -43,15 +44,10 @@ EOF
 2. Deploy Ingress Controller. [Github link](https://github.com/kubernetes/ingress-nginx)
 ```sh
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+# or with docker desktop kubernetes
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
 ```
 
-3. Run this command to wait for ingress to finish setting up
-```sh
-kubectl wait --namespace ingress-nginx \
-  --for=condition=ready pod \
-  --selector=app.kubernetes.io/component=controller \
-  --timeout=90s
-```
 
 ### When using Minikube
 From the setup guide in the [Documentation](https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/) 
@@ -60,6 +56,15 @@ From the setup guide in the [Documentation](https://kubernetes.io/docs/tasks/acc
 minikube addons enable ingress
 minikube service -n ingress-nginx ingress-nginx-controller
 ```
+
+
+## Start port forwarding to ingress controller 
+> [!WARNING]
+> This needs to stay running for the following steps to function
+```sh
+kubectl port-forward --namespace=ingress-nginx service/ingress-nginx-controller 8080:80
+```
+
 
 ## Setup applications 
 
@@ -74,11 +79,12 @@ kubectl expose deployment web --type=NodePort --port=8080 # the expose command c
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: example-ingress
+  name: demo-ingress
 spec:
   ingressClassName: nginx
   rules:
-  - http:
+  - host: demo.cloud
+    http:
         paths:
           - path: /
             pathType: Prefix
@@ -93,15 +99,10 @@ Run `kubectl apply -f ingress.yaml` to create it.
 To test
 on kind:
 ```sh
-curl localhost:8080
+# with minikube replace 127.0.0.1 with $(minikube ip)
+curl --resolve demo.cloud:8080:127.0.0.1 http://demo.cloud:8080
 ```
 
-on minikube:
-
-```sh
-minikube ip #gets the node ip
-curl 192.168.103.2:80 #<--replace with oupute from previous command
-```
 ## Create another deployment
 
 ```sh
@@ -122,23 +123,16 @@ Now we extend the ingress we created before by creating a route for our second s
 ```
 
 Run `kubectl apply -f ingress.yaml` to update it.
+
 ## Test the ingresses
 ```sh
-curl localhost:80
-#or with minikube
-minikube ip #gets the node ip
-curl 192.168.103.2:80 #<--replace with oupute from previous command
-
+curl --resolve demo.cloud:8080:127.0.0.1 http://demo.cloud:8080
 ## Output should be similar to:
 # Hello, world!
 # Version: 1.0.0
 # Hostname: web-55b8c6998d-8k56
 
-curl localhost:80/v2
-#or with minikube
-minikube ip #gets the node ip
-curl 192.168.103.2:80/v2 #<--replace with oupute from previous command
-
+curl --resolve demo.cloud:8080:127.0.0.1 http://demo.cloud:8080/v2
 ## Output should be similar to:
 # Hello, world!
 # Version: 2.0.0
