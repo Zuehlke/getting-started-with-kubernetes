@@ -1,5 +1,5 @@
 # Putting everything together 
-![daily goal](kubernetes/daily-goal.png)
+![end goal](kubernetes/end-goal.png)
 
 ### Tasks
 
