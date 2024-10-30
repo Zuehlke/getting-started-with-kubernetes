@@ -31,9 +31,22 @@ kubectl expose deployment nginx --name=nginx-clusterip --port=80 --target-port=8
 
 ```shell
 kubectl get service nginx-clusterip
+kubectl port-forward services/nginx-clusterip 8080:80
+# In another temrinal window 
+curl localhost:8080 # or open localhost:8080 in your browser
 ```
 
-You should see an internal IP assigned to the service. Pods within the cluster can communicate with the service using this IP.
+You should see an internal IP assigned to the service. Pods within the cluster can communicate with the service using this IP. When port-forwarding you should be able to access the nginx server.
+
+### Scaling 
+
+Now that you've created your service, the deployment which it points to can be scaled without any interuption to the user. The service selects one of the pods to forward to.
+
+Scale your service:
+```shell
+kubectl scale deployment nginx --replicas 2
+```
+_When portforwarding kubectl chooses one pod to forward traffic to._
 
 ### NodePort
 
@@ -54,9 +67,9 @@ kubectl get service nginx-nodeport
 
 You should see a port in the range of 30000-32767. You can now access the service using `<NodeIP>:<NodePort>`.
 
-```shell
-kubectl expose deployment nginx --name=nginx-loadbalancer --port=80 --target-port=80 --type=LoadBalancer
-```
+Depending on your local enviromnent or cloud env you should now be able to access your service with the nodes ip address and the nodeport.
+
+_when running locally this wont work with all local clusters types_ 
 
 
 ###  ExternalName
