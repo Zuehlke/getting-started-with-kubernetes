@@ -4,7 +4,7 @@
 
 You've seen in the [apps tutorial](oc-apps.md) that OpenShift can automatically generate a bunch of resources for a given application, based solely on an OCI image (e.g. httpd). 
 
-If you build your own applications and images, you usually need to publish a new image on source code changes. Here's where OpenShift's BuildConfigs come into play.
+If you build your own applications and images, you usually need to publish a new image on source code changes. Here's where OpenShift's BuildConfigs come into play: BuildConfigs hold configuration in order for the cluster to automatically generate new images for consumption in deployments.
 
 ## CLI
 
@@ -13,14 +13,14 @@ If you build your own applications and images, you usually need to publish a new
 oc new-app --name=via-app --labels='app=via-app' https://github.com/chtime/via
 ``` 
 
-📝 `oc new-app` attaches the label given above to every resource it creates. How can you list all of them?
+📝 Inspect the resources created by `oc new-app`. What is different when you don't have a prebuilt OCI image?
 
 - Inspect the BuildConfig:
 ```shell
 oc describe buildconfig via-app
 ``` 
 - Inspect the resources, particularly the Deployment and its `spec.containers.image`. 
-- Note: You'd need again to manually create a route to access the service over the web:
+- Note: You again would need to manually create a route to access the service over the web:
 ```shell
 oc create route edge --service=via-app
 ```
