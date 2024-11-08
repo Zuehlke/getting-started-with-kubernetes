@@ -45,11 +45,13 @@ oc create route edge --service=via-app
 If you don't feel too comfortable with Git & GitHub, you can just skip the first block.
 
 - 📝 Code Changes
-    - Fork the repository, and redeploy an app pointing to your fork.
+    - Fork the repository, and redeploy an app pointing to your fork
+    - 📝 How would you delete all resources created before with the `app=via-app` label?
     - *Optionally* configure webhooks:
         - Follow the steps outlined in the [repository's resources](https://github.com/chtime/via/blob/master/resources/README.md). If you have problems with this, let us know - setting up webhooks can be a little tricky.
         - Make sure the GitHub webhook test returns a success ✅
     - Make code changes (e.g. replacing the lorem ipsum text) and push back to your repository.
     - With webhooks configured, you should immediately see a build being started on the cluster.
     - If you don't have webhooks set up, you can trigger a build manually (`oc start-build via-app`)
+    - ⁉️ At the time of writing, Deployments would not get automatically updated. Editing the deployment and saving it without changes triggers the upgrade however. 
 - 📝 Can you reconstruct how BuildConfig, ImageStream and Deployments are linked? 
