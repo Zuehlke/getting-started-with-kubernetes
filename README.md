@@ -18,3 +18,7 @@
 * [Helm Prometheus](kubernetes-helm-prometheus.md)
 * [Ingress](kubernetes-ingress.md)
 * [Putting everything together](kubernetes-putting-everything-together.md)
+
+## OpenShift Modules
+
+Go [here](openshift/README.md).
