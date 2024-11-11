@@ -9,3 +9,8 @@ tasks:
     init: |
       # poor mans shell-agnostic alias
       ln -s kubectl $HOME/.local/bin/k
+vscode:
+  extensions:
+    - redhat.vscode-yaml
+    - ms-kubernetes-tools.vscode-kubernetes-tools
+    - redhat.vscode-openshift-connector
