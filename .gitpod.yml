@@ -6,11 +6,11 @@ tasks:
     before: |
       echo "kubectl: $(kubectl version --client=true)"
       echo "oc: $(oc version --client=true)"
-    init: |
       # poor mans shell-agnostic alias
       ln -s kubectl $HOME/.local/bin/k
 vscode:
   extensions:
     - redhat.vscode-yaml
     - ms-kubernetes-tools.vscode-kubernetes-tools
+    - ms-azuretools.vscode-docker
     - redhat.vscode-openshift-connector
