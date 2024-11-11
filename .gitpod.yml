@@ -1,0 +1,11 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - name: Configure
+    before: |
+      echo "kubectl: $(kubectl version --client=true)"
+      echo "oc: $(oc version --client=true)"
+    init: |
+      # poor mans shell-agnostic alias
+      ln -s kubectl $HOME/.local/bin/k
