@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: some-app
+  demo: services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: some-app
+  template:
+    metadata:
+      labels:
+        app: some-app
+    spec:
+      containers:
+        - name: some-app
+          image: ghcr.io/chtime/via:master
+          ports:
+            - containerPort: 8000
