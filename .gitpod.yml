@@ -6,6 +6,7 @@ tasks:
     before: |
       echo "kubectl: $(kubectl version --client=true)"
       echo "oc: $(oc version --client=true)"
+      echo "helm: $(helm version)"
       # poor mans shell-agnostic alias
       ln -s kubectl $HOME/.local/bin/k
 vscode:
