@@ -3,20 +3,20 @@
 Changing a deployment triggers an event on its replica sets:
 
 ```shell
-kubectl describe deployment/webserver
+kubectl describe deployment/some-app
 ```
 
 Check the rollouts directly:
 
 ```shell
-kubectl rollout history deployment/webserver
+kubectl rollout history deployment/some-app
 ```
 
 You can inspect each rollout in more detail:
 
 ```shell
-kubectl rollout history deployment/webserver --revision=1
-kubectl rollout history deployment/webserver --revision=2
+kubectl rollout history deployment/some-app --revision=1
+kubectl rollout history deployment/some-app --revision=2
 ```
 
 Note how a rollout is only concerned about the *pod template*, not about other deployment properties like replicas.
@@ -24,9 +24,9 @@ Note how a rollout is only concerned about the *pod template*, not about other d
 # Rollback
 
 ```shell
-kubectl rollout undo deployment/webserver
+kubectl rollout undo deployment/some-app
 ```
 
 ```shell
-kubectl rollout undo deployment/webserver --to-revision=2
+kubectl rollout undo deployment/some-app --to-revision=2
 ```
