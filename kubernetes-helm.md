@@ -56,7 +56,7 @@ echo -e "configs:\n  MESSAGE: I think you are going too fast ... ️🤯️" > v
 helm upgrade my-hello-kubernetes jhidalgo3-github/hello-kubernetes-chart -f values-message.yaml
 ```
 
-Important Note: Important Note: Please delete the existing Pod. A new one will be created. After that, you can run the port forward.
+**Important Note:** Please delete the existing Pod. A new one will be created. After that, you can run the port forward.
 
 💡 Multiple `values.yaml` files can be provided to a Helm installation
 
