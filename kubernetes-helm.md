@@ -46,7 +46,7 @@ For better maintainability and particularly if you have more than one simple mes
 echo -e "configs:\n  MESSAGE: I think you are going too fast ... ️🤯️" > values-message.yaml
 ```
 
-"If you do not have the `echo` command, create a file that looks like this one.
+If you do not have the `echo` command, create a file that looks like this one.
 ```shell
     configs:
         MESSAGE: I think you are going too fast ... ️🤯️
