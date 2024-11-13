@@ -3,7 +3,7 @@
 
 Add the opsmx helm repository locally. Similar to a docker registry. 
 ```shell
-helm repo add opsmx https://helmcharts.opsmx.com/
+helm repo add jhidalgo3-github https://jhidalgo3.github.io/helm-charts/
 ```
 💡 Helm does support reading/writing Helm charts to an OCI registry. 
 
@@ -14,7 +14,7 @@ helm search repo hello-kubernetes
 
 Install a Helm chart with its latest version under the **release name** `my-hello-kubernetes`
 ```shell
-helm install my-hello-kubernetes opsmx/hello-kubernetes
+helm install my-hello-kubernetes jhidalgo3-github/hello-kubernetes-chart
 ```
 
 List your release with the following command.
@@ -29,37 +29,44 @@ kubectl get all -l "app.kubernetes.io/instance=my-hello-kubernetes"
 
 Forward the service installed by helm and open it in your browser:
 ```
-kubectl port-forward service/hello-kubernetes-my-hello-kubernetes 8888:80
+ kubectl port-forward service/my-hello-kubernetes-hello-kubernetes-chart 8888:80
 ```
 
 ## Explore installed Helm chart
-
-```shell
-kubectl port-forward service/hello-kubernetes-my-hello-kubernetes 8008:80
-```
 
 What if you want to configure the Helm chart? Surely the default config is not what you were looking for..
 
 Let's set a custom message:
 ```shell
-helm upgrade my-hello-kubernetes opsmx/hello-kubernetes --set 'message=I was here'
+helm upgrade my-hello-kubernetes jhidalgo3-github/hello-kubernetes-chart --set 'configs.MESSAGE=I was here'
 ```
 
 For better maintainability and particularly if you have more than one simple message:
 ```shell
-echo "message: I think you are going too fast ... ️🤯️" > values-message.yaml
-helm upgrade my-hello-kubernetes opsmx/hello-kubernetes --values values-message.yaml
+echo -e "configs:\n  MESSAGE: I think you are going too fast ... ️🤯️" > values-message.yaml
 ```
+
+"If you do not have the `echo` command, create a file that looks like this one.
+```shell
+    configs:
+        MESSAGE: I think you are going too fast ... ️🤯️
+```
+
+```shell
+helm upgrade my-hello-kubernetes jhidalgo3-github/hello-kubernetes-chart -f values-message.yaml
+```
+
+Important Note: Important Note: Please delete the existing Pod. A new one will be created. After that, you can run the port forward.
 
 💡 Multiple `values.yaml` files can be provided to a Helm installation
 
 
 Explore the chart on https://artifacthub.io/packages/helm/opsmx/hello-kubernetes or locally:
 ```shell
-helm pull opsmx/hello-kubernetes --version 1.0.3 --untar
+helm pull jhidalgo3-github/hello-kubernetes-chart --untar 
 ```
 
-The chart should be available in the file `hello-kubernetes-1.0.3.tgz` as well as unpacked in the directory `hello-kubernetes`
+The chart should be available in the file `hello-kubernetes-chart-3.0.0.tgz` as well as unpacked in the directory `hello-kubernetes`
 
 ## Helm charts structure
 
@@ -71,11 +78,11 @@ helm help
 A few tricks when working with Helm charts
 List description/info for a chart
 ```shell
-helm show chart opsmx/hello-kubernetes
+helm show chart jhidalgo3-github/hello-kubernetes-chart
 ```
 List all (default) values for a chart.
 ```shell
-helm show values opsmx/hello-kubernetes
+helm show values jhidalgo3-github/hello-kubernetes-chart
 ```
 https://artifacthub.io/ is where a lot of charts and also documentation can be found. 
 A lot of different charts already exist, obviously. 
