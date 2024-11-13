@@ -6,6 +6,8 @@ You've seen in the [apps tutorial](oc-apps.md) that OpenShift can automatically 
 
 If you build your own applications and images, you usually need to publish a new image on source code changes. Here's where OpenShift's BuildConfigs come into play: BuildConfigs hold configuration in order for the cluster to automatically generate new images for consumption in deployments.
 
+*Keep in mind that you will need to delete or replace resources from the other respective approach if you change from CLI to UI or vice-versa.*
+
 ## CLI
 
 - Create the app:

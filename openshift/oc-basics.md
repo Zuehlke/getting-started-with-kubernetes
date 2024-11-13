@@ -30,7 +30,7 @@ Get a better description of the pod:
 oc describe pod httpd
 ```
 
-📝 Can you figure out where the pod is running?
+📝 Can you figure out where (i.e. on which node) the pod is running?
 
 
 [1]: https://catalog.redhat.com/software/containers/ubi8/httpd-24/

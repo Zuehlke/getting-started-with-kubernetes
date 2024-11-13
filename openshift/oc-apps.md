@@ -4,7 +4,7 @@
 
 Apps in OpenShift are bundles of Kubernetes resources. In some trivial cases, the cluster can autogenerate these, in more extensive cases, the maintainer of the "app" can create templates, which can then be interactively filled during importing of the app.
 
-Again, you can do this via CLI or Web Console.
+Again, you can do this via CLI or Web Console. *Keep in mind that you will need to delete or replace resources from the other respective approach if you change from CLI to UI or vice-versa.*
 
 We are going to deploy our good old friend, the apache web server, commonly referred to as `httpd`. 
 
