@@ -1,27 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webserver-lp
+  name: liveness
   labels:
     demo: probes
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: webserver-lp
+      app: liveness
   template:
     metadata:
       labels:
-        app: webserver-lp
+        app: liveness
+        demo: probes
     spec:
       containers:
-        - name: webserver-lp
-          image: nginx:1-alpine
+        - name: liveness
+          image: ghcr.io/chtime/via:master
           ports:
-            - containerPort: 80
+            - containerPort: 8000
           livenessProbe:
             httpGet:
-              port: 8080
+              port: 8000
               path: "/💀"
             failureThreshold: 10
             successThreshold: 1

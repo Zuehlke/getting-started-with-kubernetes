@@ -1,27 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webserver-rp
+  name: readiness
   labels:
     demo: probes
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: webserver-rp
+      app: readiness
   template:
     metadata:
       labels:
-        app: webserver-rp
+        app: readiness
+        demo: probes
     spec:
       containers:
-        - name: webserver-rp
-          image: nginx:1-alpine
+        - name: readiness
+          image: ghcr.io/chtime/via:master
           ports:
-            - containerPort: 80
+            - containerPort: 8000
           readinessProbe:
             httpGet:
-              port: 8080
+              port: 8000
               path: /no-coffee
             failureThreshold: 2
             successThreshold: 1

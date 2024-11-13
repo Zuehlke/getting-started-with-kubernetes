@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webserver-sp
+  name: startup
   labels:
     demo: probes
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: webserver-sp
+      app: startup
   template:
     metadata:
       labels:
-        app: webserver-sp
+        app: startup
+        demo: probes
     spec:
       containers:
-        - name: webserver-sp
-          image: nginx:1-alpine
+        - name: startup
+          image: ghcr.io/chtime/via:master
           ports:
-            - containerPort: 80
+            - containerPort: 8000
           startupProbe:
             httpGet:
-              port: 8080
+              port: 8000
               path: /started-already-?
             failureThreshold: 2
             successThreshold: 1
             initialDelaySeconds: 1
             periodSeconds: 5
             timeoutSeconds: 1
-
