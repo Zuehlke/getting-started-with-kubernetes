@@ -1,54 +1,42 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: color-app
+  name: param-cm-app
+  labels:
+    demo: param-cm-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: color-app
+      app: param-cm-app
   template:
     metadata:
       labels:
-        app: color-app
+        app: param-cm-app
+        demo: param-cm-app
     spec:
       volumes:
-      - name: config-volume
-        configMap:
-          name: color-config
-          items:
-          - key: color
-            path: color.txt
-  
-      containers:
-      - name: color-env
-        # kubectl logs -f deployments/color-app -c color-env
-        image: busybox
-        command:
-        - "sh"
-        args:
-        - "-c" 
-        - "echo \"this is a shell variable pulled from the environment: ${COLOR}\""
-        env:
-        - name: COLOR
-          valueFrom:
-            configMapKeyRef:
-              name: color-config
-              key: color
-        # if there are many more entries in a config map, pull them all:
-        envFrom:
-        - configMapRef:
-            name: color-config
-
-      - name: color-file
-        # kubectl logs -f deployments/color-app -c color-file
-        image: busybox
-        command:
-        - "sh"
-        - "-c"
-        args:
-        - "cat /etc/config/color.txt"
-        volumeMounts:
         - name: config-volume
-          mountPath: /etc/config
-      
+          configMap:
+            name: app-config
+      containers:
+        - name: param-cm-app
+          # kubectl logs -f deployments/param-cm-app -c color-env
+          image: ghcr.io/chtime/via:master
+          ports:
+            - containerPort: 8000
+          env:
+            - name: STAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: stage
+            - name: VOLUMES_PATH
+              value: /volumes
+          # if there are many more entries in a config map, pull them all:
+          envFrom:
+            - configMapRef:
+                name: app-config
+          volumeMounts:
+            - name: config-volume
+              mountPath: /volumes/config

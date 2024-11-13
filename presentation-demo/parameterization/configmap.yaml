@@ -1,6 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: color-config
+  name: app-config
+  labels:
+    demo: param-cm-app
 data:
-  color: green
+  stage: int
+  some-key: that's not being used anywhere

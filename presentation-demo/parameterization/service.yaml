@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: param-cm-app
+    demo: param-cm-app
+  name: param-cm-app
+spec:
+  ports:
+    - name: "8000"
+      port: 8000
+      protocol: TCP
+      targetPort: 8000
+  selector:
+    app: param-cm-app
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: param-secret-app
+    demo: param-secret-app
+  name: param-secret-app
+spec:
+  ports:
+    - name: "8000"
+      port: 8000
+      protocol: TCP
+      targetPort: 8000
+  selector:
+    app: param-secret-app
+  type: ClusterIP
