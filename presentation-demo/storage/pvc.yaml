@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: storage-app-pvc
+  labels:
+    demo: storage
+spec:
+  # on AWS, check:
+  # https://eu-central-1.console.aws.amazon.com/ec2/home?region=eu-central-1#Volumes:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
