@@ -2,11 +2,7 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: webserver
-  labels:
-    name: webserver
 spec:
   containers:
     - name: webserver
       image: httpd:2.4.54-alpine3.17
-      ports:
-        - containerPort: 80
