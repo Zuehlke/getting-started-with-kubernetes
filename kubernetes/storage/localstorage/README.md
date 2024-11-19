@@ -1,0 +1,1 @@
+This folder contains resources applicable only to docker, minikube et al, where a storage class is available that can map PV's to the hosts file system.

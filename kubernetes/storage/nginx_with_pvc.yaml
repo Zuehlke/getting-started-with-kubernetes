@@ -3,19 +3,15 @@ kind: Pod
 metadata:
   labels:
     run: nginxpod
-  name: nginxpod 
+  name: nginxpod
 spec:
   containers:
-  - image: nginx 
-    volumeMounts:
-    - mountPath: /usr/share/nginx/html
-      name: data-volume   
-    name: timepod
-    resources: {}
+    - image: nginx
+      name: nginxpod
+      volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: data-volume
   volumes:
-  - name: data-volume
-    persistentVolumeClaim:
-      claimName: nginxclaim
-  dnsPolicy: ClusterFirst
-  restartPolicy: Always
-status: {}
+    - name: data-volume
+      persistentVolumeClaim:
+        claimName: nginxclaim

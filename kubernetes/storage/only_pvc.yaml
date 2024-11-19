@@ -4,8 +4,9 @@ metadata:
   name: nginxclaim
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 8Gi
-  storageClassName: hostpath
+  # for better portability, leave the storage class used as default.
+  # storageClassName: hostpath

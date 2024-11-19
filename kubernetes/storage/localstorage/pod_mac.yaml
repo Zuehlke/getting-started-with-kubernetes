@@ -7,11 +7,10 @@ metadata:
 spec:
   containers:
     - image: nginx
+      name: nginxpod
       volumeMounts:
         - mountPath: /usr/share/nginx/html
           name: data-volume
-      name: timepod
-      resources: {}
   volumes:
     - name: data-volume
       hostPath:

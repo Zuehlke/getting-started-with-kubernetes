@@ -1,25 +1,18 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  creationTimestamp: null
   labels:
     run: nginxpod
-  name: nginxpod 
+  name: nginxpod
 spec:
   containers:
-  - image: nginx 
-    #command: ["/bin/sh"]
-    #args: ["-c", "echo Hello World > /opt/time.out"]
-    volumeMounts:
-    - mountPath: /usr/share/nginx/html
-      name: data-volume   
-    name: timepod
-    resources: {}
+    - image: nginx
+      name: nginxpod
+      volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: data-volume
   volumes:
-  - name: data-volume
-    hostPath:
-      path: /run/desktop/mnt/host/c/Temp
-      type: DirectoryOrCreate  
-  dnsPolicy: ClusterFirst
-  restartPolicy: Always
-status: {}
+    - name: data-volume
+      hostPath:
+        path: /run/desktop/mnt/host/c/Temp
+        type: DirectoryOrCreate

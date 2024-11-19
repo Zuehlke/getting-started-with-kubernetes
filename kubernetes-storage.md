@@ -29,7 +29,7 @@ volumes:
 ```
 💡 We suggest that you create one YAML for your pod. 
 
-💡 If you need to create YAML for POD you can use the parameter `--dry-run=client -o yaml`.
+💡 If you need to create YAML for a pod you can use the parameter `--dry-run=client -o yaml`.
 
 Change the content of the `index.html`.
 ```
