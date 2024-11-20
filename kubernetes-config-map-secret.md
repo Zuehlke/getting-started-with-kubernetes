@@ -7,7 +7,11 @@ Inspect and apply the template "hello-kubernetes" example under `kubernetes/hell
 ```shell
 kubectl apply -f kubernetes/hello-kubernetes/resources.yaml
 ```
-Check the deployed app under http://localhost:31313
+
+Create a port-forwarding for the service so you can access it at [localhost:8000](http://localhost:8000):
+```shell
+kubectl port-forward svc/hello-kubernetes 8000:8000
+```
 
 Let's externalize the message into an external configuration using a `ConfigMap`
 ```shell
@@ -32,7 +36,11 @@ Apply the resources again
 kubectl apply -f kubernetes/hello-kubernetes/resources.yaml
 ```
 
-Let's check the result under http://localhost:31313
+You might need to recreate the port-forwarding to check [localhost:8000](http://localhost:8000):
+
+```shell
+kubectl port-forward svc/hello-kubernetes 8000:8000
+```
 
 📝 Did the pods restart to show this change? Why (not)?
 
@@ -41,7 +49,11 @@ Let's update the value in the `ConfigMap` (Can also be done declaratively if par
 kubectl edit configmap hello-message
 ```
 
-Let's check the result under http://localhost:31313
+Let's check the result at [localhost:8000](http://localhost:8000) - you might need to recreate the port-forwarding:
+
+```shell
+kubectl port-forward svc/hello-kubernetes 8000:8000
+```
 
 📝 Can you explain the result?
 
@@ -51,7 +63,7 @@ kubectl exec -it hello-kubernetes-59bb8ffc5f-gvlbq -- env
 kubectl exec -it hello-kubernetes-59bb8ffc5f-gvlbq -- env | grep MESSAGE
 ```
 
-💡 There is also a prepared version with a `ConfigMap` under `kubernetes/hello-kubernetes/resources-configmap.yaml`. It provides a service under http://localhost:31323
+💡 There is also a prepared version with a `ConfigMap` under `kubernetes/hello-kubernetes/resources-configmap.yaml`. It provides a service named `config-app` and can be port-forwarded.
 
 📝 What can we do?
 
@@ -77,6 +89,6 @@ Apply the resources again
 kubectl apply -f kubernetes/hello-kubernetes/resources-configmap.yaml
 ```
 
-Let's check the result under http://localhost:31313
+Make sure the port-forward is still up and check the application at [localhost:8000](http://localhost:8000).
 
-💡 There is also a prepared version with a `Secret` under `kubernetes/hello-kubernetes/resource-secret.yaml`. It provides a service under http://localhost:31333
+💡 There is also a prepared version with a `Secret` under `kubernetes/hello-kubernetes/resource-secret.yaml`. Its service is called `secrets-app`.
