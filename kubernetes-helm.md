@@ -1,7 +1,7 @@
 # Helm Basics
 [⬅️ Back to Kubernetes overview](README.md)
 
-Add the opsmx helm repository locally. Similar to a docker registry. 
+Add [jhidalgo3s](https://github.com/jhidalgo3) helm repository locally, similar to a docker registry. 
 ```shell
 helm repo add jhidalgo3-github https://jhidalgo3.github.io/helm-charts/
 ```
@@ -17,6 +17,8 @@ Install a Helm chart with its latest version under the **release name** `my-hell
 helm install my-hello-kubernetes jhidalgo3-github/hello-kubernetes-chart
 ```
 
+💡  You can find the chart's source code here: [github.com/jhidalgo3/hello-kubernetes](https://github.com/jhidalgo3/hello-kubernetes).
+
 List your release with the following command.
 ```shell
 helm ls
@@ -29,7 +31,7 @@ kubectl get all -l "app.kubernetes.io/instance=my-hello-kubernetes"
 
 Forward the service installed by helm and open it in your browser:
 ```
- kubectl port-forward service/my-hello-kubernetes-hello-kubernetes-chart 8888:80
+ kubectl port-forward service/my-hello-kubernetes-hello-kubernetes-chart 8080:80
 ```
 
 ## Explore installed Helm chart
@@ -61,12 +63,14 @@ helm upgrade my-hello-kubernetes jhidalgo3-github/hello-kubernetes-chart -f valu
 💡 Multiple `values.yaml` files can be provided to a Helm installation
 
 
-Explore the chart on https://artifacthub.io/packages/helm/opsmx/hello-kubernetes or locally:
+Explore the chart locally:
 ```shell
 helm pull jhidalgo3-github/hello-kubernetes-chart --untar 
 ```
 
-The chart should be available in the file `hello-kubernetes-chart-3.0.0.tgz` as well as unpacked in the directory `hello-kubernetes`
+The chart should be available in the file `hello-kubernetes-chart-3.0.0.tgz` as well as unpacked in the directory `hello-kubernetes-chart`.
+
+💡 Many other charts are published on [artifacthub.io](https://artifacthub.io), where they can be inspected directly in the browser.
 
 ## Helm charts structure
 
