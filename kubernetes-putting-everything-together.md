@@ -4,9 +4,10 @@
 ## Tasks
 
 - Create a Deployment, e.g. of a  webserver consisting of two Pods.
+- Expose your deployment to the internet.
+
 - Add some content to the webserver.
 - Add a Liveness probe for the Apache webserver deployment.
-- Expose your deployment to the internet.
 
 ### OpenShift Notes
 
