@@ -1,0 +1,14 @@
+# WARNING: Use this only when using kind.
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: website
+  namespace: website
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /tmp/kind/
+  persistentVolumeReclaimPolicy: Retain

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: website
+  name: website
+  namespace: website
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: website
+  template:
+    metadata:
+      labels:
+        app: website
+    spec:
+      containers:
+        # kubectl cp index.html  website/website-...:/app/
+        - image: bitnami/apache:latest
+          name: apache
+          volumeMounts:
+            - mountPath: /app
+              name: data-volume
+          ports:
+            - containerPort: 443
+            - containerPort: 80
+          livenessProbe:
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            httpGet:
+              port: 80
+              path: /
+
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: website

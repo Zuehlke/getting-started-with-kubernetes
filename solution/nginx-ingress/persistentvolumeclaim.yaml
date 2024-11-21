@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: website
+  namespace: website
+  labels:
+    app: website
+spec:
+  # use the cluster's standard storage class by not defining this property
+  #storageClassName: ....
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
