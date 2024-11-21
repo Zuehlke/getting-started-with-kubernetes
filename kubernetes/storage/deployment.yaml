@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: storage-app
+  labels:
+    demo: storage-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: storage-app
+  template:
+    metadata:
+      labels:
+        app: storage-app
+    spec:
+      volumes:
+        - name: persistent-volume
+          persistentVolumeClaim:
+            claimName: volume-claim
+      containers:
+        - name: storage-app
+          image: ghcr.io/chtime/via:master
+          ports:
+            - containerPort: 8000
+          env:
+            # required by the application to display volume contents
+            - name: VOLUMES_PATH
+              value: /volumes
+          envFrom:
+            - configMapRef:
+                name: app-config
+          volumeMounts:
+            - name: persistent-volume
+              mountPath: /volumes/persistent

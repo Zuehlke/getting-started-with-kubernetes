@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nginxclaim
+  name: volume-claim
 spec:
   accessModes:
     - ReadWriteOnce
@@ -10,3 +10,4 @@ spec:
       storage: 8Gi
   # for better portability, leave the storage class used as default.
   # storageClassName: hostpath
+  # storageClassName: gp3-csi
