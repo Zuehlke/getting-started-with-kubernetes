@@ -11,7 +11,7 @@
 
 ### OpenShift Notes
 
-- 💡 Use `ubi8/httpd-24` instead of `httpd` because of security constraints (user ids and ports). 
+- 💡 Use `registry.redhat.io/ubi8/httpd-24` instead of `httpd` because of security constraints (user ids and ports). 
 - Have a look at the page returned by httpd (tip: you can `oc port-forward deployment/httpd 8080:8080`).
 - 💡 Health checks will fail with this httpd's default configuration *until you add your own content*; you can inspect the config using `oc exec -it <podname> -- cat /etc/httpd/conf.d/welcome.conf`.  If you're not familiar with apache configs: it will return a static test page with a HTTP error code 403 if the requested file is not found at `/var/www/html/`; the default page is defined as `index.html`. 
 - We will add content to `/var/www/html` in a second, so the fallback configuration to the test page will not be used anymore.
