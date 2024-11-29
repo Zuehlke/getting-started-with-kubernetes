@@ -143,6 +143,7 @@ curl --resolve demo.cloud:8080:127.0.0.1 http://demo.cloud:8080/v2
 
 ## Further Reading
 
+
 - https://devopscube.com/kubernetes-ingress-tutorial/ 
 - https://kubernetes.io/docs/concepts/services-networking/ingress/ 
 - https://kubernetes.io/docs/tasks/access-application-cluster/ingress-minikube/
