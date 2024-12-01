@@ -4,7 +4,7 @@
 Create a deployment with nginx
 
 ```shell
-kubectl create deployment --image=nginx --port 80 nginx 
+kubectl create deployment --image=nginx nginx 
 ```
 
 Verify the deployment:
