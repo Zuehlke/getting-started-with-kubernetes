@@ -98,7 +98,7 @@ The service redirects any requests to `nginx-externalname` to `example.com`. Thi
 ## Exercise 
 
 * Create a new deployment with the Apache Webserver (httpd) and two replicas.
-* Create a service to access the Apache Webserver via the browser
+* Create a service to access the Apache Webserver via the browser. If you are using a managed Kubernetes cluster in the cloud, please use the Service type **LoadBalancer**.
 
 
 ## Further Resources
