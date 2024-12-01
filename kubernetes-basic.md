@@ -44,7 +44,6 @@ kubectl delete pod nginx
 Inspect the cluster
 ```shell
 kubectl get node
-kubectl describe node docker-desktop
 ```
 
 More cluster information
