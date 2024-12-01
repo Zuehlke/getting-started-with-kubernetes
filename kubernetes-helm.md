@@ -33,6 +33,8 @@ Forward the service installed by helm and open it in your browser:
 ```
  kubectl port-forward service/my-hello-kubernetes-hello-kubernetes-chart 8080:80
 ```
+ 
+💡 If port forwarding does not work and you are using Kubernetes with support for a LoadBalancer, you can use the LoadBalancer instead. `--set 'service.type=LoadBalancer'`
 
 ## Explore installed Helm chart
 
