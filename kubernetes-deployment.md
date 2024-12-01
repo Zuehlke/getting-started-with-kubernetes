@@ -3,7 +3,7 @@
 
 Create a deployment with nginx
 ```shell
-kubectl create deployment --image=nginx --port 80 nginx 
+kubectl create deployment --image=nginx nginx 
 ```
 
 So what is the difference? There is still a pod, but with a weird name
