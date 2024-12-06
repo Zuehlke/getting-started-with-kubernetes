@@ -95,6 +95,27 @@ You should now be able to verify the successful connectivty with the following c
 curl -v console.platform
 ````
 
+## Experiment with network policies
+
+To experiment with network policies you can also create a generic pod and use tools like curl, netcat, nslookup. 
+
+E.g., start an ubuntu image and connect to the shell:
+````
+kubectl run -i  --tty ubuntu --image=ubuntu -- bash
+````
+
+Additional packages, such as `curl` can be installed by running
+````
+apt update
+apt install curl
+````
+
+If you disconnect from the shell you can reconnect again with the following commend:
+````
+kubectl exec --stdin --tty ubuntu -- bash
+````
+
+
 ## Further Reading
 [Kubernetes Network Policy Documentation](https://kubernetes.io/docs/concepts/services-networking/network-policies/)
 
