@@ -63,7 +63,7 @@ kubectl exec -it hello-kubernetes-59bb8ffc5f-gvlbq -- env
 kubectl exec -it hello-kubernetes-59bb8ffc5f-gvlbq -- env | grep MESSAGE
 ```
 
-💡 There is also a prepared version with a `ConfigMap` under `kubernetes/hello-kubernetes/resources-configmap.yaml`. It provides a service named `config-app` and can be port-forwarded.
+💡 If you're stuck and need a hint or a reference, there is also a prepared version with a `ConfigMap` under `kubernetes/hello-kubernetes/resources-configmap.yaml`. It provides a service named `config-app` and can be port-forwarded.
 
 📝 What can we do?
 
@@ -76,7 +76,7 @@ kubectl get secret secret-message -o yaml
 
 Looks safe, doesn't it?
 
-Let's use it instead of the `ConfigMap` in `kubernetes/hello-kubernetes/resources-configmap.yaml`.
+Let's use it instead of the `ConfigMap` in your resource file, probably either `resources.yaml` or `resources-configmap.yaml`.
 ```yaml
           - name: MESSAGE
             valueFrom:
@@ -86,9 +86,9 @@ Let's use it instead of the `ConfigMap` in `kubernetes/hello-kubernetes/resource
 ```
 Apply the resources again
 ```shell
-kubectl apply -f kubernetes/hello-kubernetes/resources-configmap.yaml
+kubectl apply -f <your resource file.yaml> 
 ```
 
 Make sure the port-forward is still up and check the application at [localhost:8000](http://localhost:8000).
 
-💡 There is also a prepared version with a `Secret` under `kubernetes/hello-kubernetes/resource-secret.yaml`. Its service is called `secrets-app`.
+💡 As a reference, there is also a prepared version with a `Secret` under `kubernetes/hello-kubernetes/resource-secret.yaml`. Its service is called `secrets-app`.
