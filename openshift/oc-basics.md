@@ -4,6 +4,8 @@
 
 Generally, you can achieve all things OpenShift cluster related either using the Web Console or the CLI (using the `oc` binary). The choice is yours! For this example however, the **Web Console does not allow you to create "just a pod"** - the most basic unit you can deploy via Web Console is an app which we'll discuss [after](oc-apps.md).
 
+*Note: if you haven't configured your cluster connection, go to [oc-connect.md](./oc-connect.md)*
+
 
 Run a simple pod using the [httpd-2.4 image][1]:
 ```shell
