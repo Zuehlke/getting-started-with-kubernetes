@@ -5,5 +5,6 @@
 * [Connecting](oc-connect.md)
 * [Basics](oc-basics.md)
 * [Projects](oc-projects.md)
+* [Deployments](oc-deployment.md)
 * [Apps](oc-apps.md)
 * [BuildConfig & ImageStream](oc-ci.md)
