@@ -11,7 +11,7 @@
 
 ## Lab
 
-The ArgoCD instance deployed on our cluster is configured to automatically generate applications for manifests inside the GitOps repository linked above; see the contained `README.md` for more details.
+The ArgoCD instance deployed on our cluster is configured to automatically generate applications for manifests inside the GitOps repository linked above; see the contained `README.md` for more details. You will need to change files in that repository!
 
 - You can either do the edits in directly in a browser, or use a git client to clone and change the repository.
 - You should only create resources in the `/applications/<your-username>` folder.
