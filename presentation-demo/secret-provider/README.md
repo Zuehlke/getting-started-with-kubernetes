@@ -1,0 +1,1 @@
+This demo works with the [Platformplane](https://portal.zuluplane.io/). Create a kv (key value) secret in Hashicorp Vault. For help reference, the [Platformplane](https://portal.zuluplane.io/) documentation.
