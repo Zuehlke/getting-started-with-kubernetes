@@ -48,10 +48,8 @@ Now the secret can be provided to resources that demand it.
 
 # Create deployment, that uses the secret
 
+Apply the following deployment that uses the secret.
 ```yaml
-# -----------------
-# deployment.yaml
-# -----------------
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -90,4 +88,12 @@ spec:
             readOnly: true
             volumeAttributes:
               secretProviderClass: demo-secrets # as defined in the secretproviderclass.yaml file
+```
+  
+
+
+
+The passwords should now be visible in the secret created:
+```sh
+k get secret db-password -o yaml
 ```
