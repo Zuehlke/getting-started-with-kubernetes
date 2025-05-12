@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-ingress
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - kafkatraining.zuluplane.io
+        - '*.kafkatraining.zuluplane.io'
+      secretName: console-tls
+  rules:
+  - host: mstr.kafkatraining.zuluplane.io
+    http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-service
+                port:
+                  number: 80

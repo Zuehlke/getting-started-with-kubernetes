@@ -1,0 +1,41 @@
+# -----------------
+# deployment.yaml
+# -----------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo
+  labels:
+    app: demo
+spec:
+  selector:
+    matchLabels:
+      app: demo
+  template:
+    metadata:
+      labels:
+        app: demo
+    spec:
+      containers:
+        - name: demo
+          image: alpine
+          command: ["/bin/sh"]
+          args: ["-c", "sleep infinity"]
+          volumeMounts: # mount the secrets store volume into the pod
+            - name: secrets-store-inline # matches the volume name declared below
+              mountPath: "/mnt/secrets"
+              readOnly: true
+          env: # building up env vars from Vault secrets
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-password # name of the Kubernetes secret you created above
+                  key: test 
+
+      volumes: # define the secrets store volume
+        - name: secrets-store-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: demo-secrets # as defined in the secretproviderclass.yaml file
