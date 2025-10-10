@@ -18,12 +18,19 @@ spec:
       containers:
         - name: startup
           image: ghcr.io/chtime/via:master
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              echo "sleeping...";
+              sleep 30;
+              echo "starting";
+              exec ./serve.sh
           ports:
             - containerPort: 8000
           startupProbe:
             httpGet:
               port: 8000
-              path: /started-already-?
+              path: /
             failureThreshold: 2
             successThreshold: 1
             initialDelaySeconds: 1
