@@ -23,9 +23,9 @@ spec:
           readinessProbe:
             httpGet:
               port: 8000
-              path: /no-coffee
+              path: /
             failureThreshold: 2
             successThreshold: 1
-            initialDelaySeconds: 1
+            initialDelaySeconds: 20
             periodSeconds: 5
             timeoutSeconds: 1
