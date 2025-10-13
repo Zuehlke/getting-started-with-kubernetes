@@ -1,4 +1,4 @@
-# ArgoCD on OpenShift 
+# ArgoCD on OpenShift
 
 [⬅️ Back to the OpenShift overview](README.md)
 
@@ -6,15 +6,21 @@
 
 ## Links
 
-- [GitOps repository on a gitea](https://gitea.apps.zuehlkeacademy.germanywestcentral.aroapp.io/gvz-academy/gitops) (use the same login as the cluster)
-- [ArgoCD Instance](https://argocd-server-argocd.apps.zuehlkeacademy.germanywestcentral.aroapp.io/applications)
+- [GitOps repository on gitea](https://gitea.apps.zuehlkeacademy.switzerlandnorth.aroapp.io) (use the same login as the cluster)
+- [ArgoCD Instance](https://argocd-server-argocd.apps.zuehlkeacademy.switzerlandnorth.aroapp.io/)
 
 ## Lab
 
-The ArgoCD instance deployed on our cluster is configured to automatically generate applications for manifests inside the GitOps repository linked above; see the contained `README.md` for more details. You will need to change files in that repository!
+The ArgoCD instance deployed on our cluster is configured to automatically generate applications for manifests found in git repositories matching the following pattern:
+- on the gitea server linked above
+- in a repo named "gitops" under your user account: e.g. if you're demo: `$gitea-host/demo/gitops`)
+- inside an application folder in that repository: e.g. `applications/deployment.yaml` will be deployed & managed by ArgoCD
 
-- You can either do the edits in directly in a browser, or use a git client to clone and change the repository.
-- You should only create resources in the `/applications/<your-username>` folder.
+For this to work, you need to:
+- Fork the original gitops repository: `$gitea-host/gitops/gitops`
+- Make sure you keep the repository name as "gitops" (but under your user account)
+- Add an `applications/` folder at the root.
+- Add your manifests in there, commit & push
 - ArgoCD will only deploy changes made to the `main` branch; one application for each folder in `/applications/`.
 
 📝 Add some resources to the repository in your own folder (on the main branch!), at the minimum a deployment.
@@ -24,4 +30,4 @@ The ArgoCD instance deployed on our cluster is configured to automatically gener
 
 📝 Make some changes to these resources, e.g. replace or update the image, add a service or route, etc. Before you push, make sure you have an eye open on your application on ArgoCD and watch the changes happen!
 
-📝 Consider where and how you could benefit from such an approach. 
+📝 Consider where and how you could benefit from such an approach.
