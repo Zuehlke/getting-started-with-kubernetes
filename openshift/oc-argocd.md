@@ -19,7 +19,7 @@ The ArgoCD instance deployed on our cluster is configured to automatically gener
 For this to work, you need to:
 - Fork the original gitops repository: `$gitea-host/gitops/gitops`
 - Make sure you keep the repository name as "gitops" (but under your user account)
-- Add an `applications/` folder at the root.
+- Add an `applications/` + your username folder at the root.
 - Add your manifests in there, commit & push
 - ArgoCD will only deploy changes made to the `main` branch; one application for each folder in `/applications/`.
 
