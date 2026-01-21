@@ -1,10 +1,5 @@
 # Getting started with Kubernetes
 
-**Can't install `kubectl` or `oc` locally? Try GitPod to run a preconfigured VSCode environment through your browser.**
-
-[![Run with GitPod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/Zuehlke/getting-started-with-kubernetes)
-
-
 ## Docker
 
 * [Docker Refresher](docker/docker.md)
