@@ -1,6 +1,6 @@
 # Ingress
 [⬅️ Back to Kubernetes overview](README.md)
-
+<!---
 ## Overall information & setup
 ### Setup ingress controller
 ![Ingress Controller](./kubernetes/ingress.png)
@@ -57,12 +57,12 @@ minikube addons enable ingress
 minikube service -n ingress-nginx ingress-nginx-controller
 ```
 
-
+-->
 ### Start port forwarding to ingress controller 
 > [!WARNING]
 > This needs to stay running for the following steps to function
 ```sh
-kubectl port-forward --namespace=ingress-nginx service/ingress-nginx-controller 8080:80
+kubectl port-forward --namespace=platform service/ingress-nginx-controller 8080:80
 ```
 
 ## Begin exercise
